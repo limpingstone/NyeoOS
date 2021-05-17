@@ -2,7 +2,7 @@
 [bits 32]
 
 pm_clear:
-    pusha
+    pushad
 
     mov ebx, vga_start
     mov ecx, vga_size
@@ -28,6 +28,6 @@ pm_clear_loop:
     jmp pm_clear_loop
 
 pm_clear_end:
-    popa
+    popad
     ret
 

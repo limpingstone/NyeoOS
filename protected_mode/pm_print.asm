@@ -2,7 +2,7 @@
 [bits 32]
 
 pm_print:
-    pusha
+    pushad
     mov edx, vga_start
 
 pm_print_loop:
@@ -23,6 +23,6 @@ pm_print_loop:
     jmp pm_print_loop
 
 pm_print_end:
-    popa
+    popad
     ret
 
