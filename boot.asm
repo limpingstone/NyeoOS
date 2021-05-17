@@ -19,9 +19,9 @@ begin_protected:
     jmp $
 
 ; INCLUDES
-%include "rm_print.asm"
-%include "gdt.asm"
-%include "elevate.asm"
+%include "real_mode/rm_print.asm"
+%include "real_mode/gdt.asm"
+%include "real_mode/elevate.asm"
 
 ; DATA SECTION
 boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0
