@@ -1,3 +1,5 @@
+; CONSTANTS
+%include "include/include.asm"
 
 ; memory offset for loading the first sector of the hard drive
 [org 0x7c00]
@@ -32,11 +34,6 @@ begin_protected:
 %include "real_mode/elevate.asm"
 %include "protected_mode/pm_clear.asm"
 %include "protected_mode/pm_print.asm"
-
-; CONSTANTS
-vga_start:  equ 0xb8000
-vga_size:   equ 80 * 25 * 2
-vga_style:  equ 0x0f
 
 ; DATA SECTION
 boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0

@@ -32,5 +32,3 @@ pm_clear_end:
     popa
     ret
 
-space_char:     equ ` `
-
