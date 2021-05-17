@@ -4,15 +4,24 @@
 
 ; 16-bit real mode
 [bits 16]
+begin_real:
 
-mov bx, boot_msg
-call rm_print
+    ; print message
+    mov bx, boot_msg
+    call rm_print
 
-; infinite loop to halt the booting screen
-jmp $
+    call elevate_pm
+
+[bits 32]
+begin_protected:
+
+    ; infinite loop to halt the booting screen
+    jmp $
 
 ; INCLUDES
 %include "rm_print.asm"
+%include "gdt.asm"
+%include "elevate.asm"
 
 ; DATA SECTION
 boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0
