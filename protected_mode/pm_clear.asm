@@ -4,14 +4,13 @@
 pm_clear:
     pusha
 
-
     mov ebx, vga_start
     mov ecx, vga_size
     mov edx, 0
 
 pm_clear_loop:
     ; check whether the loop hits end of screen
-    cmp edx, ebx
+    cmp edx, ecx
     jge pm_clear_end
 
     push edx
@@ -19,7 +18,7 @@ pm_clear_loop:
     ; print space onto screen
     mov al, space_char
     mov ah, vga_style
-    add edx, ecx
+    add edx, ebx
     mov word[edx], ax
 
     pop edx
