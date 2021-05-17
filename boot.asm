@@ -37,7 +37,7 @@ begin_protected:
 
 ; DATA SECTION
 boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0
-pm_msg:     db `Now in 32-bit protected mode\r\n`, 0
+pm_msg:     db `Now in 32-bit protected mode`, 0
 
 ; padding for the rest of the boot sector
 times 510 - ($ - $$) db 0x00

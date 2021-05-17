@@ -8,5 +8,9 @@ To build and run NyeoOS, you will need to use the Netwide Assembler (NASM), QEMU
 - qemu
 - i686-elf-gcc
 
+The repository contains a makefile that lets you build and run NyeoOS with NASM and QEMU: 
+```
+$ make; make open
+```
 
 
