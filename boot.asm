@@ -9,8 +9,8 @@
 begin_real:
 
     ; print message
-    mov bx, boot_msg
-    call rm_print
+    ;mov bx, boot_msg
+    ;call rm_print
 
     ; elevate to 32-bit protected mode
     call elevate_pm
@@ -34,9 +34,10 @@ begin_protected:
 %include "real_mode/elevate.asm"
 %include "protected_mode/pm_clear.asm"
 %include "protected_mode/pm_print.asm"
+%include "protected_mode/lm_detect.asm"
 
 ; DATA SECTION
-boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0
+;boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0
 pm_msg:     db `Now in 32-bit protected mode`, 0
 
 ; padding for the rest of the boot sector
