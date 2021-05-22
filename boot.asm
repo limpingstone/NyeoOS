@@ -35,6 +35,7 @@ begin_protected:
 %include "protected_mode/pm_clear.asm"
 %include "protected_mode/pm_print.asm"
 %include "protected_mode/lm_detect.asm"
+%include "protected_mode/lm_page_table.asm"
 
 ; DATA SECTION
 ;boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0
