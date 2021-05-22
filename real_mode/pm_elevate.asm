@@ -13,12 +13,12 @@ elevate_pm:
     mov cr0, eax
 
     ; long jump
-    jmp code_seg:init_pm
+    jmp code_seg_32:init_pm
 
 [bits 32]
 init_pm:
     ; initialize segment registers
-    mov ax, data_seg
+    mov ax, data_seg_32
     mov ds, ax
     mov ss, ax
     mov es, ax

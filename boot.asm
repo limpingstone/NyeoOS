@@ -30,10 +30,12 @@ begin_protected:
 
 ; INCLUDES
 %include "real_mode/rm_print.asm"
-%include "real_mode/gdt.asm"
-%include "real_mode/elevate.asm"
+%include "real_mode/gdt32.asm"
+%include "real_mode/pm_elevate.asm"
+
 %include "protected_mode/pm_clear.asm"
 %include "protected_mode/pm_print.asm"
+%include "protected_mode/gdt64.asm"
 %include "protected_mode/lm_detect.asm"
 %include "protected_mode/lm_page_table.asm"
 

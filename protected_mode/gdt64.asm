@@ -1,12 +1,12 @@
 
-[bits 16]
+[bits 32]
 
-gdt_32_start:
+gdt_64_start:
 ; null sector
     dq 0x0
 
 ; code sector
-gdt_32_code:
+gdt_64_code:
     dw 0xffff
     dw 0x0000
     db 0x00
@@ -15,22 +15,22 @@ gdt_32_code:
     db 0x00
 
 ; data sector
-gdt_32_data:
+gdt_64_data:
     dw 0xffff
     dw 0x0000
     db 0x00
     db 0b10010010
-    db 0b11001111
+    db 0b10100000
     db 0x00
 
-gdt_32_end:
+gdt_64_end:
 
 ; define the GDT descriptor
-gdt_32_descriptor:
-    dw gdt_32_end - gdt_32_start - 1
-    dd gdt_32_start
+gdt_64_descriptor:
+    dw gdt_64_end - gdt_64_start - 1
+    dd gdt_64_start
 
 ; pointers to code and data segments
-code_seg:   equ gdt_32_code - gdt_32_start
-data_seg:   equ gdt_32_data - gdt_32_start
+code_seg_64:   equ gdt_64_code - gdt_64_start
+data_seg_64:   equ gdt_64_data - gdt_64_start
 
