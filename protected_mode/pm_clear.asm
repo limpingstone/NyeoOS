@@ -17,7 +17,7 @@ pm_clear_loop:
 
     ; print space onto screen
     mov al, space_char
-    mov ah, vga_style
+    mov ah, vga_style_bg_black
     add edx, ebx
     mov word[edx], ax
 

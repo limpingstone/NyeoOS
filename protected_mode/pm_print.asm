@@ -12,7 +12,7 @@ pm_print_loop:
 
     ; set character and style
     mov al, byte[esi]
-    mov ah, vga_style
+    mov ah, vga_style_bg_black
 
     ; print character
     mov word[edx], ax
