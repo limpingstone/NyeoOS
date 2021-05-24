@@ -46,6 +46,8 @@ bios_disk_error:
 
 ; INCLUDE for real mode
 %include "real_mode/rm_print.asm"
+%include "real_mode/rm_print_hex.asm"
+%include "real_mode/rm_load.asm"
 %include "real_mode/gdt32.asm"
 %include "real_mode/pm_elevate.asm"
 
