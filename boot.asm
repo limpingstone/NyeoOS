@@ -12,26 +12,15 @@ begin_real:
     mov bp, 0x0500
     mov sp, bp
 
-    mov ah, 0x02    ; BIOS read from disk
-    mov al, 0x02    ; boot sector size
-    mov cl, 0x02    ; boot sector to be read from
-
-    mov ch, 0x00    ; cylinder
-    mov dh, 0x00    ; cylinder head
-
-    mov bx, 0x7e00  ; destination
-
-    ; boot drive
-    mov dl, byte[boot_drive]
-
-    ; BIOS disk read
-    int 0x13
-
-    jc bios_disk_error
-
-    ; print message
+    ; print BIOS load message
     mov bx, boot_msg
     call rm_print
+
+    ; load more sectors
+    mov al, 0x02    ; boot sector size
+    mov cl, 0x02    ; boot sector to be read from
+    mov bx, 0x7e00  ; destination
+    call rm_load
 
     ; elevate to 32-bit protected mode
     call elevate_pm

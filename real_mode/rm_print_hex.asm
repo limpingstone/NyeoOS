@@ -19,7 +19,7 @@ rm_print_hex:
 rm_print_hex_loop:
     ; when all numbers are run
     cmp cx, 0
-    jmp rm_print_hex_end
+    je rm_print_hex_end
 
     push bx
 
