@@ -12,6 +12,9 @@ begin_real:
     mov bp, 0x0500
     mov sp, bp
 
+    ; determine the boot drive
+    mov byte[boot_drive], dl
+
     ; print BIOS load message
     mov bx, boot_msg
     call rm_print
@@ -27,11 +30,6 @@ begin_real:
 
     jmp $
 
-bios_disk_error:
-
-    mov bx, err_msg
-    call rm_print
-    jmp $
 
 ; INCLUDE for real mode
 %include "real_mode/rm_print.asm"
@@ -40,9 +38,9 @@ bios_disk_error:
 %include "real_mode/gdt32.asm"
 %include "real_mode/pm_elevate.asm"
 
+
 ; DATA section for real mode
 boot_msg:   db `Loading boot sector from Hard Disk...\r\n`, 0
-err_msg:    db `ERROR loading sectors!\r\n`, 0
 
 ; padding for the rest of the boot sector
 times 510 - ($ - $$) db 0x00
@@ -61,9 +59,10 @@ begin_protected:
     mov esi, pm_msg
     call pm_print
 
-    ;call elevate_lm
+    call elevate_lm
 
     jmp $
+
 
 ; INCLUDE for protected mode
 %include "protected_mode/pm_clear.asm"
@@ -84,6 +83,7 @@ times 512 - ($ - begin_protected) db 0x00
 begin_long_mode:
 [bits 64]
 
+    mov rdi, vga_style_bg_blue
     call lm_clear
 
     mov rdi, vga_style_bg_blue
