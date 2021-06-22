@@ -1,2 +1,6 @@
 boot
+kernel
+*.o
 *.swp
+
+os.img
