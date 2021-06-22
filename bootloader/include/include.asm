@@ -11,3 +11,6 @@ vga_style_bg_blue:      equ 0x1f
 ; CHARACTERS
 space_char: equ ` `
 
+; KERNEL START
+kernel_start:           equ 0x8200
+

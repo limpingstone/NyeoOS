@@ -20,7 +20,7 @@ begin_real:
     call rm_print
 
     ; load more sectors
-    mov al, 0x02    ; boot sector size
+    mov al, 0x03    ; boot sector size
     mov cl, 0x02    ; boot sector to be read from
     mov bx, 0x7e00  ; destination
     call rm_load
@@ -89,6 +89,8 @@ begin_long_mode:
     mov rdi, vga_style_bg_blue
     mov rsi, lm_msg
     call lm_print
+
+    call kernel_start
 
     ; infinite loop to halt the booting screen
     jmp $
