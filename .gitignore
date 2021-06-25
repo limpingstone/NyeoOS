@@ -1,5 +1,5 @@
 boot
-kernel
+kernel/kernel
 *.o
 *.swp
 
