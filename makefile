@@ -4,7 +4,7 @@ all:
 	cd kernel; nasm entry.asm -f elf64 -o entry.o
 	cd kernel; clang kernel.c -c -ffreestanding -target x86_64-none-elf -o kernel.o
 
-	cd kernel; ld.lld -o kernel -Ttext 0x8200 --oformat binary entry.o kernel.o
+	cd kernel; ld.lld -o kernel -T script.ld --oformat binary entry.o kernel.o
 
 	cp bootloader/boot os.img
 	cat kernel/kernel >> os.img
