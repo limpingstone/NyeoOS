@@ -1,10 +1,18 @@
+CC  = clang
+LD  = ld.lld
+ASM = nasm
+
+CCFLAGS = -c -ffreestanding -target x86_64-none-elf
+LDFLAGS = -T script.ld --oformat binary
+ASFLAGS = -f elf64
+
 all: 
-	cd bootloader; nasm boot.asm
+	cd bootloader; $(ASM) boot.asm
 
-	cd kernel; nasm entry.asm -f elf64 -o entry.o
-	cd kernel; clang kernel.c -c -ffreestanding -target x86_64-none-elf -o kernel.o
+	cd kernel; $(ASM) $(ASFLAGS) -o entry.o  entry.asm
+	cd kernel; $(CC)  $(CCFLAGS) -o kernel.o kernel.c
 
-	cd kernel; ld.lld -o kernel -T script.ld --oformat binary entry.o kernel.o
+	cd kernel; $(LD)  $(LDFLAGS) -o kernel   entry.o kernel.o
 
 	cp bootloader/boot os.img
 	cat kernel/kernel >> os.img
