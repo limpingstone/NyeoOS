@@ -1,9 +1,10 @@
 CC  = clang
 LD  = ld.lld
 ASM = nasm
+OBJCOPY = llvm-objcopy
 
 CCFLAGS = -c -ffreestanding -target x86_64-none-elf
-LDFLAGS = -T script.ld --oformat binary
+LDFLAGS = -T script.ld
 ASFLAGS = -f elf64
 
 all: 
@@ -12,10 +13,11 @@ all:
 	cd kernel; $(ASM) $(ASFLAGS) -o entry.o  entry.asm
 	cd kernel; $(CC)  $(CCFLAGS) -o kernel.o kernel.c
 
-	cd kernel; $(LD)  $(LDFLAGS) -o kernel   entry.o kernel.o
+	cd kernel; $(LD)  $(LDFLAGS) -o kernel.elf   entry.o kernel.o
+	cd kernel; $(OBJCOPY) -O binary kernel.elf kernel.bin
 
 	cp bootloader/boot os.img
-	cat kernel/kernel >> os.img
+	cat kernel/kernel.bin >> os.img
 	
 
 open: 
