@@ -27,6 +27,6 @@ clean:
 	rm -f os.img
 	rm -f bootloader/boot
 	rm -f kernel/*.o
-	rm -f kernel/kernel
+	rm -f kernel/kernel.bin
 	rm -f kernel/kernel.elf
 
